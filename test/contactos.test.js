@@ -133,3 +133,16 @@ test('rutas y operaciones no disponibles devuelven 404 en JSON', async () => {
     assert.deepEqual(await respuesta.json(), { error: 'Ruta no encontrada.' });
   }
 });
+
+test('sirve la página y sus recursos sin publicar el código del servidor ni los datos', async () => {
+  for (const [ruta, tipo] of [['/', 'text/html'], ['/index.html', 'text/html'],
+    ['/css/styles.css', 'text/css'], ['/js/agenda.js', 'javascript']]) {
+    const respuesta = await fetch(`${url}${ruta}`);
+    assert.equal(respuesta.status, 200);
+    assert.ok(respuesta.headers.get('content-type').includes(tipo));
+  }
+  await enviar(contacto);
+  for (const ruta of ['/data/contactos.json', '/js/server.js', '/js/services/contactos.js', '/package.json', '/.git/config']) {
+    assert.equal((await fetch(`${url}${ruta}`)).status, 404);
+  }
+});

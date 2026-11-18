@@ -1,4 +1,5 @@
 import express from 'express';
+import { fileURLToPath } from 'node:url';
 import { crearRutasContactos } from './routes/contactos.js';
 import { crearAlmacenContactos } from './services/contactos.js';
 
@@ -9,7 +10,16 @@ export function crearApp(archivoContactos) {
   app.use(express.json({ limit: '10kb' }));
 
   app.get('/', (req, res) => {
-    res.json({ mensaje: 'Servicio de agenda en preparación.' });
+    res.sendFile(fileURLToPath(new URL('../index.html', import.meta.url)));
+  });
+  app.get('/index.html', (req, res) => {
+    res.sendFile(fileURLToPath(new URL('../index.html', import.meta.url)));
+  });
+  app.get('/css/styles.css', (req, res) => {
+    res.sendFile(fileURLToPath(new URL('../css/styles.css', import.meta.url)));
+  });
+  app.get('/js/agenda.js', (req, res) => {
+    res.sendFile(fileURLToPath(new URL('./agenda.js', import.meta.url)));
   });
 
   app.use('/contactos', crearRutasContactos(crearAlmacenContactos(archivoContactos)));
