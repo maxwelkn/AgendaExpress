@@ -8,5 +8,6 @@ dist/
 .idea/
 *.log
 data/contactos.json
+data/contactos.json.tmp
 AGENTS.md
 RETROALIMENTACION_PROFESOR.md
