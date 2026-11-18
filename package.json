@@ -1,0 +1,18 @@
+{
+  "name": "agenda-express",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tarea 5 de Programación Web: servicio de contactos con Express.",
+  "type": "module",
+  "scripts": {
+    "start": "node js/server.js",
+    "dev": "node --watch js/server.js",
+    "check": "node --check js/app.js && node --check js/server.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}

@@ -1,0 +1,12 @@
+node_modules/
+coverage/
+dist/
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+*.log
+data/contactos.json
+AGENTS.md
+RETROALIMENTACION_PROFESOR.md
